@@ -6,14 +6,15 @@ LOCAL_SRC_FILES:=                                      \
                   BandwidthController.cpp              \
                   CommandListener.cpp                  \
                   DnsProxyListener.cpp                 \
-                  MDnsSdListener.cpp                   \
+                  FirewallController.cpp               \
                   IdletimerController.cpp              \
+                  InterfaceController.cpp              \
+                  MDnsSdListener.cpp                   \
                   NatController.cpp                    \
                   NetdCommand.cpp                      \
                   NetdConstants.cpp                    \
                   NetlinkHandler.cpp                   \
                   NetlinkManager.cpp                   \
-                  PanController.cpp                    \
                   PppController.cpp                    \
                   ResolverController.cpp               \
                   SecondaryTableController.cpp         \
@@ -28,8 +29,6 @@ LOCAL_SRC_FILES:=                                      \
 LOCAL_MODULE:= netd
 
 LOCAL_C_INCLUDES := $(KERNEL_HEADERS) \
-                    $(LOCAL_PATH)/../bluetooth/bluedroid/include \
-                    $(LOCAL_PATH)/../bluetooth/bluez-clean-headers \
                     external/mdnsresponder/mDNSShared \
                     external/openssl/include \
                     external/stlport/stlport \
@@ -53,19 +52,10 @@ LOCAL_CFLAGS += -DWIFI_DRIVER_LOADER_DELAY=$(WIFI_DRIVER_LOADER_DELAY)
 endif
 
 LOCAL_SHARED_LIBRARIES := libstlport libsysutils libcutils libnetutils \
-                          libcrypto libhardware_legacy libmdnssd
-
-ifneq ($(BOARD_HOSTAPD_DRIVER),)
-  LOCAL_CFLAGS += -DHAVE_HOSTAPD
-endif
+                          libcrypto libhardware_legacy libmdnssd libdl
 
 ifeq ($(BOARD_WLAN_DEVICE),ar6002)
   LOCAL_CFLAGS += -DAR6002_WIFI
-endif
-
-ifeq ($(BOARD_HAVE_BLUETOOTH),true)
-  LOCAL_SHARED_LIBRARIES := $(LOCAL_SHARED_LIBRARIES) libbluedroid
-  LOCAL_CFLAGS := $(LOCAL_CFLAGS) -DHAVE_BLUETOOTH
 endif
 
 ifeq ($(BOARD_WLAN_DEVICE),ar6002)

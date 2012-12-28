@@ -93,7 +93,6 @@ public class LegacyUsbDeviceManager extends UsbDeviceManager {
 
     private final Context mContext;
     private final ContentResolver mContentResolver;
-    private final UsbSettingsManager mSettingsManager;
     private NotificationManager mNotificationManager;
     private final boolean mHasUsbAccessory;
     private boolean mUseUsbNotification;
@@ -149,7 +148,6 @@ public class LegacyUsbDeviceManager extends UsbDeviceManager {
         super();
         mContext = context;
         mContentResolver = context.getContentResolver();
-        mSettingsManager = settingsManager;
         PackageManager pm = mContext.getPackageManager();
         mHasUsbAccessory = pm.hasSystemFeature(PackageManager.FEATURE_USB_ACCESSORY);
 
@@ -516,9 +514,6 @@ public class LegacyUsbDeviceManager extends UsbDeviceManager {
                     break;
                 case MSG_BOOT_COMPLETED:
                     mBootCompleted = true;
-                    if (mCurrentAccessory != null) {
-                        mSettingsManager.accessoryAttached(mCurrentAccessory);
-                    }
                     break;
             }
         }
