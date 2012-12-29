@@ -144,7 +144,7 @@ public class LegacyUsbDeviceManager extends UsbDeviceManager {
         }
     };
 
-    public LegacyUsbDeviceManager(Context context, UsbSettingsManager settingsManager) {
+    public LegacyUsbDeviceManager(Context context) {
         super();
         mContext = context;
         mContentResolver = context.getContentResolver();

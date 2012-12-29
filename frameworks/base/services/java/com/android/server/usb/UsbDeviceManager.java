@@ -154,7 +154,7 @@ public class UsbDeviceManager {
         mHasUsbAccessory = false;
     }
 
-    public UsbDeviceManager(Context context, UsbSettingsManager settingsManager) {
+    public UsbDeviceManager(Context context) {
         mContext = context;
         mContentResolver = context.getContentResolver();
         PackageManager pm = mContext.getPackageManager();

@@ -180,7 +180,7 @@ typedef  struct {
 
 #define IEEE80211_CRC_LEN           4
 
-
+#define IEEE80211_MAX_OPT_IE        256
 
 #define IEEE80211_ADDR_LEN  6       /* size of 802.11 address */
 /* is 802.11 address multicast/broadcast? */
