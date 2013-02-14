@@ -242,12 +242,12 @@ public class StorageVolumePreferenceCategory extends PreferenceCategory {
         final String state = mStorageManager.getVolumeState(mVolume.getPath());
 
         if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
-            mItemAvailable.setSummary(R.string.memory_available_read_only);
+            mItemAvailable.setTitle(R.string.memory_available_read_only);
             if (mFormatPreference != null) {
                 removePreference(mFormatPreference);
             }
         } else {
-            mItemAvailable.setSummary(R.string.memory_available);
+            mItemAvailable.setTitle(R.string.memory_available);
         }
 
         if (Environment.MEDIA_MOUNTED.equals(state)
@@ -317,8 +317,8 @@ public class StorageVolumePreferenceCategory extends PreferenceCategory {
 
     private static long totalValues(HashMap<String, Long> map, String... keys) {
         long total = 0;
-        if (map != null) {
-            for (String key : keys) {
+        for (String key : keys) {
+            if (map.containsKey(key)) {
                 total += map.get(key);
             }
         }
